@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You</title>
+<meta charset="UTF-8">
+<title>Only for You</title>
+
+<style>
+body {
+  background: #000;
+  color: #0ff;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+input {
+  background: black;
+  border: 2px solid #0ff;
+  color: #0ff;
+  padding: 10px;
+  font-size: 18px;
+  outline: none;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #0ff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>
 </head>
-<body style="background:black; color:white; text-align:center; font-family:sans-serif;">
-  <h1>Only you can unlock this.</h1>
+
+<body>
+<div class="container">
+  <h2>Access Restricted</h2>
+  <p>Only you can unlock this.</p>
+  <input type="password" id="pass" placeholder="Enter the secret">
+  <br>
+  <button onclick="check()">Unlock</button>
+</div>
+
+<script>
+function check() {
+  let p = document.getElementById("pass").value;
+
+  if (p === "firstdate") {  
+    window.location.href = "universe.html";
+  } else {
+    alert("Wrong password ❤️");
+  }
+}
+</script>
+
 </body>
 </html>
