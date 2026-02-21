@@ -149,6 +149,24 @@ section {
 /* floating hearts */
 @keyframes floatUp {
   to { transform: translateY(-120vh); opacity: 0; }
+
+  
+}
+  .bday-btn {
+  margin-top: 18px;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #c084fc, #f472b6);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 500;
+  box-shadow: 0 6px 20px rgba(192,132,252,0.4);
+  transition: 0.3s;
+}
+
+.bday-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(192,132,252,0.7);
 }
 </style>
 </head>
@@ -180,6 +198,7 @@ section {
   <p>You are my favourite place in this universe.</p>
 
   <div class="days" id="days"></div>
+  <a href="birthday.html" class="bday-btn">A surprise for you 🎁</a>
 
 </div>
 
