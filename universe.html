@@ -37,10 +37,9 @@ nav a {
   margin: 0 12px;
   text-decoration: none;
   color: #5c005c;
-  font-weight: 500;
 }
 
-/* HOME HERO */
+/* HERO */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -50,8 +49,10 @@ nav a {
   color: #5c005c;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
+/* glow */
 .glow {
   position: absolute;
   width: 500px;
@@ -62,30 +63,44 @@ nav a {
 }
 
 @keyframes moveGlow {
-  from { transform: translate(-100px, -100px); }
-  to { transform: translate(100px, 100px); }
+  from { transform: translate(-120px, -100px); }
+  to { transform: translate(120px, 100px); }
 }
 
+/* DAYS */
 .days {
   font-size: 26px;
   margin: 10px 0;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  border: none;
-  background: #a64dff;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
+/* POLAROID */
+.polaroid {
+  position: absolute;
+  width: 140px;
+  background: white;
+  padding: 8px 8px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  transition: 0.4s;
 }
 
-/* QUOTES */
-.quote {
-  margin-top: 20px;
-  font-style: italic;
-  opacity: 0.8;
+.polaroid img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.polaroid:hover {
+  transform: scale(1.1) rotate(0deg);
+  z-index: 10;
+}
+
+.p1 { top: 12%; left: 8%; transform: rotate(-8deg); }
+.p2 { top: 18%; right: 10%; transform: rotate(6deg); }
+.p3 { bottom: 18%; left: 12%; transform: rotate(5deg); }
+.p4 { bottom: 12%; right: 12%; transform: rotate(-7deg); }
+
+@media (max-width: 768px) {
+  .polaroid { display: none; }
 }
 
 /* SECTIONS */
@@ -150,18 +165,22 @@ section {
   </nav>
 </header>
 
-<!-- HOME -->
+<!-- HERO -->
 <div class="hero">
+
   <div class="glow"></div>
+
+  <!-- POLAROID PHOTOS -->
+  <div class="polaroid p1"><img src="photo1.jpg"></div>
+  <div class="polaroid p2"><img src="photo2.jpg"></div>
+  <div class="polaroid p3"><img src="photo3.jpg"></div>
+  <div class="polaroid p4"><img src="photo4.jpg"></div>
 
   <h1>Priyanshi ❤️</h1>
   <p>You are my favourite place in this universe.</p>
 
   <div class="days" id="days"></div>
 
-  <button onclick="heart()">Press this 💜</button>
-
-  <div class="quote" id="quote"></div>
 </div>
 
 <!-- JOURNEY -->
@@ -178,8 +197,8 @@ section {
 <section id="memories">
   <h2>Memories 💕</h2>
   <div class="gallery">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
+    <img src="mem1.jpg">
+    <img src="mem2.jpg">
   </div>
 </section>
 
@@ -205,29 +224,13 @@ section {
   <a href="#">Song 2</a>
 </section>
 
-<audio autoplay loop>
-  <source src="song.mp3" type="audio/mp3">
-</audio>
-
 <script>
 /* DAYS COUNTER */
 let startDate = new Date("2024-01-04"); // change this
 let today = new Date();
-let diff = Math.floor((today - startDate) / (1000*60*60*24));
+let diff = Math.floor((today - startDate)/(1000*60*60*24));
 document.getElementById("days").innerHTML =
 "We have been together for " + diff + " days 💜";
-
-/* HEART BUTTON */
-function heart() {
-  let q = [
-    "You are my safest place.",
-    "I still choose you every day.",
-    "You make my world brighter.",
-    "Forever with you."
-  ];
-  document.getElementById("quote").innerHTML =
-    q[Math.floor(Math.random()*q.length)];
-}
 
 /* floating hearts */
 setInterval(() => {
@@ -239,7 +242,7 @@ setInterval(() => {
   h.style.animation = "floatUp 6s linear";
   document.body.appendChild(h);
   setTimeout(() => h.remove(), 6000);
-}, 800);
+}, 900);
 
 /* scroll reveal */
 const sections = document.querySelectorAll("section");
