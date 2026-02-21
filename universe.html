@@ -15,28 +15,60 @@ body {
 }
 
 /* HEADER */
+/* HEADER */
 header {
   position: fixed;
   top: 0;
   width: 100%;
   padding: 15px 30px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   background: rgba(230, 204, 255, 0.5);
   backdrop-filter: blur(12px);
   z-index: 999;
 }
 
+/* logo left */
 .logo {
   font-size: 22px;
   font-weight: bold;
   color: #5c005c;
+  position: absolute;
+  left: 30px;
+}
+
+/* nav centered */
+nav {
+  margin: auto;
 }
 
 nav a {
-  margin: 0 12px;
+  margin: 0 16px;
   text-decoration: none;
   color: #5c005c;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* premium hover underline */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #a64dff;
+  transition: 0.4s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: #a64dff;
 }
 
 /* HERO */
