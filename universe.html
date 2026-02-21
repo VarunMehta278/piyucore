@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #ffd6e0, #e6ccff);
+}
+
+/* stars */
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  50% { opacity: 0.3; }
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #5c005c;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="center">
+  <h1>Your Name ❤️</h1>
+  <p>You are my favorite place in this universe.</p>
+</div>
+
+<audio autoplay loop>
+  <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<script>
+// stars generator
+for (let i = 0; i < 100; i++) {
+  let star = document.createElement("div");
+  star.className = "star";
+  star.style.top = Math.random() * window.innerHeight + "px";
+  star.style.left = Math.random() * window.innerWidth + "px";
+  document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
