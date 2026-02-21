@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
   position: fixed;
   top: 0;
@@ -22,7 +22,6 @@ header {
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   background: rgba(230, 204, 255, 0.5);
   backdrop-filter: blur(12px);
   z-index: 999;
@@ -39,23 +38,57 @@ nav a {
   text-decoration: none;
   color: #5c005c;
   font-weight: 500;
+}
+
+/* HOME HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #5c005c;
+  text-align: center;
   position: relative;
 }
 
-nav a:hover { color: #a64dff; }
-
-nav a::after {
-  content: "";
+.glow {
   position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: #a64dff;
-  transition: 0.4s;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.6), transparent);
+  filter: blur(120px);
+  animation: moveGlow 12s infinite alternate;
 }
-nav a:hover::after { width: 100%; }
 
+@keyframes moveGlow {
+  from { transform: translate(-100px, -100px); }
+  to { transform: translate(100px, 100px); }
+}
+
+.days {
+  font-size: 26px;
+  margin: 10px 0;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  background: #a64dff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* QUOTES */
+.quote {
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* SECTIONS */
 section {
   min-height: 100vh;
   padding: 110px 40px 50px;
@@ -64,27 +97,13 @@ section {
   transition: 1s;
 }
 
-h2 { color: #5c005c; }
-
-/* ===== HOME ===== */
-.center {
-  text-align: center;
-  margin-top: 120px;
-  color: #5c005c;
-}
-
-/* ===== TIMELINE ===== */
-.timeline { max-width: 700px; margin: auto; }
-
 .timeline div {
   background: rgba(255,255,255,0.6);
   padding: 15px;
   margin: 18px 0;
   border-radius: 12px;
-  backdrop-filter: blur(10px);
 }
 
-/* ===== GALLERY ===== */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -94,10 +113,8 @@ h2 { color: #5c005c; }
 .gallery img {
   width: 100%;
   border-radius: 15px;
-  transition: 0.4s;
   cursor: pointer;
 }
-.gallery img:hover { transform: scale(1.08); }
 
 /* compliments */
 .card { position: relative; }
@@ -114,25 +131,10 @@ h2 { color: #5c005c; }
 }
 .card:hover span { opacity: 1; }
 
-/* ===== SONGS ===== */
-.songs a {
-  display: block;
-  margin: 10px 0;
-  color: #5c005c;
-  font-weight: 500;
-  text-decoration: none;
+/* floating hearts */
+@keyframes floatUp {
+  to { transform: translateY(-120vh); opacity: 0; }
 }
-
-/* stars */
-.star {
-  position: fixed;
-  width: 3px;
-  height: 3px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 3s infinite;
-}
-@keyframes twinkle { 50% { opacity: 0.3; } }
 </style>
 </head>
 
@@ -141,7 +143,6 @@ h2 { color: #5c005c; }
 <header>
   <div class="logo">For You 💜</div>
   <nav>
-    <a href="#home">Home</a>
     <a href="#journey">Our Journey</a>
     <a href="#memories">Memories</a>
     <a href="#her">My Favourite</a>
@@ -150,12 +151,18 @@ h2 { color: #5c005c; }
 </header>
 
 <!-- HOME -->
-<section id="home">
-  <div class="center">
-    <h1>Priyanshi ❤️</h1>
-    <p>You are my favourite place in this universe.</p>
-  </div>
-</section>
+<div class="hero">
+  <div class="glow"></div>
+
+  <h1>Priyanshi ❤️</h1>
+  <p>You are my favourite place in this universe.</p>
+
+  <div class="days" id="days"></div>
+
+  <button onclick="heart()">Press this 💜</button>
+
+  <div class="quote" id="quote"></div>
+</div>
 
 <!-- JOURNEY -->
 <section id="journey">
@@ -164,7 +171,6 @@ h2 { color: #5c005c; }
     <div>The first time we talked 💬</div>
     <div>Our first date 🌸</div>
     <div>The moment I realised I love you 💖</div>
-    <div>Every memory with you ✨</div>
   </div>
 </section>
 
@@ -174,7 +180,6 @@ h2 { color: #5c005c; }
   <div class="gallery">
     <img src="photo1.jpg">
     <img src="photo2.jpg">
-    <img src="photo3.jpg">
   </div>
 </section>
 
@@ -190,21 +195,14 @@ h2 { color: #5c005c; }
       <img src="her2.jpg">
       <span>Still not over this day ✨</span>
     </div>
-    <div class="card">
-      <img src="her3.jpg">
-      <span>My favourite view forever 💕</span>
-    </div>
   </div>
 </section>
 
 <!-- SONGS -->
 <section id="songs">
   <h2>Songs That Remind Me of You 🎧</h2>
-  <div class="songs">
-    <a href="#">Song 1</a>
-    <a href="#">Song 2</a>
-    <a href="#">Song 3</a>
-  </div>
+  <a href="#">Song 1</a>
+  <a href="#">Song 2</a>
 </section>
 
 <audio autoplay loop>
@@ -212,33 +210,36 @@ h2 { color: #5c005c; }
 </audio>
 
 <script>
-/* stars */
-for (let i = 0; i < 80; i++) {
-  let star = document.createElement("div");
-  star.className = "star";
-  star.style.top = Math.random() * 100 + "vh";
-  star.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(star);
+/* DAYS COUNTER */
+let startDate = new Date("2023-10-01"); // change this
+let today = new Date();
+let diff = Math.floor((today - startDate) / (1000*60*60*24));
+document.getElementById("days").innerHTML =
+"We have been together for " + diff + " days 💜";
+
+/* HEART BUTTON */
+function heart() {
+  let q = [
+    "You are my safest place.",
+    "I still choose you every day.",
+    "You make my world brighter.",
+    "Forever with you."
+  ];
+  document.getElementById("quote").innerHTML =
+    q[Math.floor(Math.random()*q.length)];
 }
 
 /* floating hearts */
 setInterval(() => {
-  let heart = document.createElement("div");
-  heart.innerHTML = "💜";
-  heart.style.position = "fixed";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.bottom = "-20px";
-  heart.style.animation = "floatUp 6s linear";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 900);
-
-let style = document.createElement("style");
-style.innerHTML = `
-@keyframes floatUp {
-  to { transform: translateY(-120vh); opacity: 0; }
-}`;
-document.head.appendChild(style);
+  let h = document.createElement("div");
+  h.innerHTML = "💜";
+  h.style.position = "fixed";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.bottom = "-20px";
+  h.style.animation = "floatUp 6s linear";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 800);
 
 /* scroll reveal */
 const sections = document.querySelectorAll("section");
@@ -249,25 +250,6 @@ window.addEventListener("scroll", () => {
       sec.style.transform = "translateY(0)";
     }
   });
-});
-
-/* fullscreen viewer */
-document.querySelectorAll(".gallery img").forEach(img => {
-  img.onclick = () => {
-    let viewer = document.createElement("div");
-    viewer.style.position = "fixed";
-    viewer.style.top = 0;
-    viewer.style.left = 0;
-    viewer.style.width = "100%";
-    viewer.style.height = "100%";
-    viewer.style.background = "rgba(0,0,0,0.8)";
-    viewer.style.display = "flex";
-    viewer.style.alignItems = "center";
-    viewer.style.justifyContent = "center";
-    viewer.innerHTML = `<img src="${img.src}" style="max-width:90%; border-radius:20px">`;
-    viewer.onclick = () => viewer.remove();
-    document.body.appendChild(viewer);
-  };
 });
 </script>
 
