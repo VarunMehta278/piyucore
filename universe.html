@@ -2,19 +2,129 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You</title>
+<title>For You 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  overflow: hidden;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(120deg, #ffd6e0, #e6ccff);
+  overflow-x: hidden;
 }
 
-/* stars */
-.star {
+/* ===== HEADER ===== */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(230, 204, 255, 0.4);
+  backdrop-filter: blur(15px);
+  z-index: 999;
+  animation: fadeDown 1.5s ease;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #5c005c;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #5c005c;
+  font-weight: 500;
+  position: relative;
+}
+
+nav a:hover {
+  color: #a64dff;
+}
+
+nav a::after {
+  content: "";
   position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #a64dff;
+  transition: 0.4s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+@keyframes fadeDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  min-height: 100vh;
+  padding: 100px 40px 40px;
+}
+
+/* ===== HOME ===== */
+.center {
+  text-align: center;
+  margin-top: 100px;
+  color: #5c005c;
+}
+
+/* ===== TIMELINE ===== */
+.timeline {
+  max-width: 700px;
+  margin: auto;
+}
+
+.timeline div {
+  background: rgba(255,255,255,0.6);
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+/* ===== GALLERY ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 15px;
+  transition: 0.4s;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+/* ===== SONGS ===== */
+.songs a {
+  display: block;
+  margin: 10px 0;
+  color: #5c005c;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ===== STARS ===== */
+.star {
+  position: fixed;
   width: 3px;
   height: 3px;
   background: white;
@@ -25,39 +135,77 @@ body {
 @keyframes twinkle {
   50% { opacity: 0.3; }
 }
-
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #5c005c;
-}
-
-h1 {
-  font-size: 40px;
-}
-
-p {
-  font-size: 20px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="center">
-  <h1>Priyanshi❤️</h1>
-  <p>You are my favorite place in this universe.</p>
-</div>
+<header>
+  <div class="logo">For You 💜</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#journey">Our Journey</a>
+    <a href="#memories">Memories</a>
+    <a href="#her">My Favourite</a>
+    <a href="#songs">Songs</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home">
+  <div class="center">
+    <h1>Your Name ❤️</h1>
+    <p>You are my favourite place in this universe.</p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="journey">
+  <h2>Our Journey 💫</h2>
+  <div class="timeline">
+    <div>First time we talked 💬</div>
+    <div>Our first date 🌸</div>
+    <div>Our favourite memory 💖</div>
+    <div>The day I knew you were special ✨</div>
+  </div>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories">
+  <h2>Memories 💕</h2>
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>
+</section>
+
+<!-- HER -->
+<section id="her">
+  <h2>My Favourite 💜</h2>
+  <div class="gallery">
+    <img src="her1.jpg">
+    <img src="her2.jpg">
+    <img src="her3.jpg">
+  </div>
+</section>
+
+<!-- SONGS -->
+<section id="songs">
+  <h2>Songs That Remind Me of You 🎧</h2>
+  <div class="songs">
+    <a href="#">Song 1</a>
+    <a href="#">Song 2</a>
+    <a href="#">Song 3</a>
+  </div>
+</section>
 
 <audio autoplay loop>
   <source src="song.mp3" type="audio/mp3">
 </audio>
 
 <script>
-// stars generator
+/* stars */
 for (let i = 0; i < 100; i++) {
   let star = document.createElement("div");
   star.className = "star";
