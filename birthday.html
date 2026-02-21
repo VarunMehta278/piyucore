@@ -83,6 +83,20 @@ button {
   opacity: 0;
   transition: 1s;
 }
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  top: -10px;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
 </style>
 </head>
 
@@ -93,7 +107,7 @@ button {
 
   <div class="cake" id="cake">
     <div class="layer"></div>
-    <div class="candle" id="candle">
+    <div class="candle">
       <div class="flame" id="flame"></div>
     </div>
   </div>
@@ -114,6 +128,16 @@ function blow() {
   let cake = document.getElementById("cake");
   cake.style.transition = "1s";
   cake.style.transform = "rotateY(180deg)";
+
+  /* confetti */
+  for (let i = 0; i < 150; i++) {
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = `hsl(${Math.random()*360},100%,70%)`;
+    c.style.animationDuration = (2 + Math.random()*3) + "s";
+    document.body.appendChild(c);
+  }
 
   /* show message */
   setTimeout(() => {
