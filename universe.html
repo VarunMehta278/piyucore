@@ -10,6 +10,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(120deg, #ffd6e0, #e6ccff);
+  background-attachment: fixed;
   overflow-x: hidden;
 }
 
@@ -22,10 +23,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(230, 204, 255, 0.4);
-  backdrop-filter: blur(15px);
+  background: rgba(230, 204, 255, 0.5);
+  backdrop-filter: blur(12px);
   z-index: 999;
-  animation: fadeDown 1.5s ease;
 }
 
 .logo {
@@ -35,63 +35,51 @@ header {
 }
 
 nav a {
-  margin: 0 15px;
+  margin: 0 12px;
   text-decoration: none;
   color: #5c005c;
   font-weight: 500;
   position: relative;
 }
 
-nav a:hover {
-  color: #a64dff;
-}
+nav a:hover { color: #a64dff; }
 
 nav a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px;
+  bottom: -4px;
   width: 0;
   height: 2px;
   background: #a64dff;
   transition: 0.4s;
 }
-
-nav a:hover::after {
-  width: 100%;
-}
-
-@keyframes fadeDown {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-html {
-  scroll-behavior: smooth;
-}
+nav a:hover::after { width: 100%; }
 
 section {
   min-height: 100vh;
-  padding: 100px 40px 40px;
+  padding: 110px 40px 50px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s;
 }
+
+h2 { color: #5c005c; }
 
 /* ===== HOME ===== */
 .center {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 120px;
   color: #5c005c;
 }
 
 /* ===== TIMELINE ===== */
-.timeline {
-  max-width: 700px;
-  margin: auto;
-}
+.timeline { max-width: 700px; margin: auto; }
 
 .timeline div {
   background: rgba(255,255,255,0.6);
   padding: 15px;
-  margin: 20px 0;
+  margin: 18px 0;
   border-radius: 12px;
   backdrop-filter: blur(10px);
 }
@@ -107,22 +95,35 @@ section {
   width: 100%;
   border-radius: 15px;
   transition: 0.4s;
+  cursor: pointer;
 }
+.gallery img:hover { transform: scale(1.08); }
 
-.gallery img:hover {
-  transform: scale(1.1);
+/* compliments */
+.card { position: relative; }
+.card span {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: 0.4s;
 }
+.card:hover span { opacity: 1; }
 
 /* ===== SONGS ===== */
 .songs a {
   display: block;
   margin: 10px 0;
   color: #5c005c;
-  text-decoration: none;
   font-weight: 500;
+  text-decoration: none;
 }
 
-/* ===== STARS ===== */
+/* stars */
 .star {
   position: fixed;
   width: 3px;
@@ -131,10 +132,7 @@ section {
   border-radius: 50%;
   animation: twinkle 3s infinite;
 }
-
-@keyframes twinkle {
-  50% { opacity: 0.3; }
-}
+@keyframes twinkle { 50% { opacity: 0.3; } }
 </style>
 </head>
 
@@ -154,19 +152,19 @@ section {
 <!-- HOME -->
 <section id="home">
   <div class="center">
-    <h1>Your Name ❤️</h1>
+    <h1>Priyanshi ❤️</h1>
     <p>You are my favourite place in this universe.</p>
   </div>
 </section>
 
-<!-- TIMELINE -->
+<!-- JOURNEY -->
 <section id="journey">
   <h2>Our Journey 💫</h2>
   <div class="timeline">
-    <div>First time we talked 💬</div>
+    <div>The first time we talked 💬</div>
     <div>Our first date 🌸</div>
-    <div>Our favourite memory 💖</div>
-    <div>The day I knew you were special ✨</div>
+    <div>The moment I realised I love you 💖</div>
+    <div>Every memory with you ✨</div>
   </div>
 </section>
 
@@ -184,9 +182,18 @@ section {
 <section id="her">
   <h2>My Favourite 💜</h2>
   <div class="gallery">
-    <img src="her1.jpg">
-    <img src="her2.jpg">
-    <img src="her3.jpg">
+    <div class="card">
+      <img src="her1.jpg">
+      <span>This smile saved me 💜</span>
+    </div>
+    <div class="card">
+      <img src="her2.jpg">
+      <span>Still not over this day ✨</span>
+    </div>
+    <div class="card">
+      <img src="her3.jpg">
+      <span>My favourite view forever 💕</span>
+    </div>
   </div>
 </section>
 
@@ -206,13 +213,62 @@ section {
 
 <script>
 /* stars */
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 80; i++) {
   let star = document.createElement("div");
   star.className = "star";
-  star.style.top = Math.random() * window.innerHeight + "px";
-  star.style.left = Math.random() * window.innerWidth + "px";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.left = Math.random() * 100 + "vw";
   document.body.appendChild(star);
 }
+
+/* floating hearts */
+setInterval(() => {
+  let heart = document.createElement("div");
+  heart.innerHTML = "💜";
+  heart.style.position = "fixed";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.bottom = "-20px";
+  heart.style.animation = "floatUp 6s linear";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 900);
+
+let style = document.createElement("style");
+style.innerHTML = `
+@keyframes floatUp {
+  to { transform: translateY(-120vh); opacity: 0; }
+}`;
+document.head.appendChild(style);
+
+/* scroll reveal */
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight - 100) {
+      sec.style.opacity = "1";
+      sec.style.transform = "translateY(0)";
+    }
+  });
+});
+
+/* fullscreen viewer */
+document.querySelectorAll(".gallery img").forEach(img => {
+  img.onclick = () => {
+    let viewer = document.createElement("div");
+    viewer.style.position = "fixed";
+    viewer.style.top = 0;
+    viewer.style.left = 0;
+    viewer.style.width = "100%";
+    viewer.style.height = "100%";
+    viewer.style.background = "rgba(0,0,0,0.8)";
+    viewer.style.display = "flex";
+    viewer.style.alignItems = "center";
+    viewer.style.justifyContent = "center";
+    viewer.innerHTML = `<img src="${img.src}" style="max-width:90%; border-radius:20px">`;
+    viewer.onclick = () => viewer.remove();
+    document.body.appendChild(viewer);
+  };
+});
 </script>
 
 </body>
