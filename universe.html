@@ -317,6 +317,71 @@ window.addEventListener("scroll", () => {
   });
 });
 </script>
+<script>
+/* FLOATING LOVE WORDS */
+const words = ["Forever", "Always", "Us", "Together", "Mine", "Love"];
+
+setInterval(() => {
+  let w = document.createElement("div");
+  w.innerText = words[Math.floor(Math.random()*words.length)];
+  w.style.position = "fixed";
+  w.style.left = Math.random()*100 + "vw";
+  w.style.top = Math.random()*100 + "vh";
+  w.style.opacity = "0.12";
+  w.style.fontSize = "30px";
+  w.style.color = "#7c3aed";
+  w.style.pointerEvents = "none";
+  w.style.transition = "8s";
+  document.body.appendChild(w);
+
+  setTimeout(() => {
+    w.style.transform = "translateY(-80px)";
+    w.style.opacity = "0";
+  }, 100);
+
+  setTimeout(() => w.remove(), 8000);
+}, 2500);
+
+
+/* SOFT BACKGROUND BLOBS */
+for(let i=0;i<3;i++){
+  let blob = document.createElement("div");
+  blob.style.position="fixed";
+  blob.style.width="300px";
+  blob.style.height="300px";
+  blob.style.borderRadius="50%";
+  blob.style.background="rgba(255,255,255,0.15)";
+  blob.style.filter="blur(100px)";
+  blob.style.left=Math.random()*100+"vw";
+  blob.style.top=Math.random()*100+"vh";
+  blob.style.pointerEvents="none";
+  blob.style.zIndex="0";
+  document.body.appendChild(blob);
+
+  setInterval(()=>{
+    blob.style.left=Math.random()*100+"vw";
+    blob.style.top=Math.random()*100+"vh";
+  },12000);
+}
+
+
+/* CURSOR GLOW */
+let cursor = document.createElement("div");
+cursor.style.position="fixed";
+cursor.style.width="120px";
+cursor.style.height="120px";
+cursor.style.borderRadius="50%";
+cursor.style.background="radial-gradient(circle, rgba(192,132,252,0.4), transparent)";
+cursor.style.pointerEvents="none";
+cursor.style.transform="translate(-50%, -50%)";
+cursor.style.zIndex="0";
+document.body.appendChild(cursor);
+
+document.addEventListener("mousemove",(e)=>{
+  cursor.style.left=e.clientX+"px";
+  cursor.style.top=e.clientY+"px";
+});
+</script>
 
 </body>
 </html>
