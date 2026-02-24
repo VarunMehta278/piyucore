@@ -282,36 +282,48 @@ section {
   }
 }
 
-/* RETRO SONG SECTION */
-.retro {
+/* VINYL PLAYER */
+.vinyl-section {
   text-align: center;
 }
 
-.cd-player {
+.player {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 40px;
+  align-items: center;
+  gap: 50px;
   margin-top: 40px;
 }
 
-/* CD */
-.cd {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #f0abfc, #7c3aed);
+/* turntable */
+.turntable {
   position: relative;
-  animation: spin 6s linear infinite;
+  width: 260px;
+  height: 260px;
+  background: #e9d5ff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* vinyl */
+.vinyl {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #111 40%, #222 60%, #000);
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  animation: spin 5s linear infinite;
   animation-play-state: paused;
 }
 
-/* hole */
-.cd::after {
+/* center hole */
+.vinyl::after {
   content: "";
-  width: 40px;
-  height: 40px;
-  background: white;
+  width: 18px;
+  height: 18px;
+  background: #c084fc;
   border-radius: 50%;
   position: absolute;
   top: 50%;
@@ -319,15 +331,29 @@ section {
   transform: translate(-50%, -50%);
 }
 
+/* needle */
+.needle {
+  width: 120px;
+  height: 6px;
+  background: #7c3aed;
+  position: absolute;
+  top: 50px;
+  right: -20px;
+  transform-origin: left;
+  transform: rotate(-25deg);
+  transition: 0.5s;
+}
+
+/* spin */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* buttons */
-.song-list button {
+/* playlist */
+.playlist button {
   display: block;
-  margin: 10px 0;
-  padding: 10px 18px;
+  margin: 12px 0;
+  padding: 12px 20px;
   border: none;
   background: #a78bfa;
   color: white;
@@ -336,8 +362,15 @@ section {
   transition: 0.3s;
 }
 
-.song-list button:hover {
+.playlist button:hover {
   background: #7c3aed;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .player {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
@@ -430,15 +463,18 @@ section {
   </div>
 </section>
 <!-- SONGS -->
-<section id="songs" class="retro">
-  <h2>Songs dedicated to Piyu 🎧</h2>
+<section id="songs" class="vinyl-section">
+  <h2>Our Songs 🎶</h2>
 
-  <div class="cd-player">
+  <div class="player">
 
-    <div class="cd" id="cd"></div>
+    <div class="turntable">
+      <div class="vinyl" id="vinyl"></div>
+      <div class="needle" id="needle"></div>
+    </div>
 
-    <div class="song-list">
-      <button onclick="playSong('mulaqat.mp3')">Our first one</button>
+    <div class="playlist">
+      <button onclick="playSong('mulaqat.mp3')">The First One</button>
       <button onclick="playSong('kauntujhe.mp3')">Who Else?</button>
       <button onclick="playSong('dekhahinahi.mp3')">Never Seen One Like You</button>
     </div>
@@ -446,6 +482,7 @@ section {
   </div>
 </section>
 
+<audio id="audio"></audio>
 <audio id="player"></audio>
 
 <script>
@@ -546,15 +583,17 @@ document.addEventListener("mousemove",(e)=>{
 </script>
 
 <script>
-let audio = document.getElementById("player");
-let cd = document.getElementById("cd");
+let audio = document.getElementById("audio");
+let vinyl = document.getElementById("vinyl");
+let needle = document.getElementById("needle");
 
 function playSong(song) {
   audio.src = song;
   audio.play();
-  cd.style.animationPlayState = "running";
+
+  vinyl.style.animationPlayState = "running";
+  needle.style.transform = "rotate(5deg)";
 }
 </script>
-
 </body>
 </html>
