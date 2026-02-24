@@ -164,7 +164,13 @@ button:hover {
 <audio id="bdayMusic" src="birthday.mp3"></audio>
 
 <script>
+let isBlown = false;   // prevent multiple clicks
+let typing;           // store interval
+
 function blow(){
+
+  if(isBlown) return;  // stop double execution
+  isBlown = true;
 
   /* candle off */
   document.getElementById("flame").style.display="none";
@@ -194,22 +200,29 @@ function blow(){
     document.body.appendChild(s);
   }
 
-  /* message typing */
+  /* message typing FIX */
   let text="Happy Birthday Priyanshi 💜";
-  let i=0;
   let msg=document.getElementById("msg");
+
+  msg.innerHTML="";        // 🔥 reset message
   msg.style.opacity="1";
 
-  let typing=setInterval(()=>{
-    msg.innerHTML+=text[i];
-    i++;
-    if(i>=text.length) clearInterval(typing);
+  let i=0;
+
+  clearInterval(typing);   // 🔥 stop old interval if any
+
+  typing=setInterval(()=>{
+    if(i < text.length){
+      msg.innerHTML += text[i];
+      i++;
+    } else {
+      clearInterval(typing);
+    }
   },80);
 
   /* music */
   document.getElementById("bdayMusic").play();
 }
 </script>
-
 </body>
 </html>
